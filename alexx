@@ -1,0 +1,123 @@
+/ PROGRAMA PARA ACIONAR UM LED COM O BOTÃO
+
+int LEDLAR1-8,
+
+//Led 1 ligado no pino 8
+
+int LEDAZU2-9:
+
+//Led 2 ligado no pino 9
+
+int LEDAMA310;
+
+//Led 3 ligado no pino 10
+
+int BOT1-7;
+
+//Botão 1 ligado no pino 7
+
+int BOT2-6;
+
+//Botão 2 ligado no pino 6
+
+int BOT3-5,
+
+//Botão 3 ligado no pino 5
+
+int ESTBOT1-0
+
+//Botão 1 desligado
+
+int ESTBOT20;
+
+//Botão 2 desligado
+
+int ESTBOT3=0;
+
+//Botão 3 desligado
+
+void setup(){ //Configurações dos pinos
+
+pinMode(LEDLAR1, OUTPUT);
+
+pinMode(BOT1, INPUT);
+
+//pino do Led 1 configurado como salda
+
+//pino do botão 1 configurado como entrada
+
+pinMode(LEDAZUZ, OUTPUT);
+
+pinMode(BOT2, INPUT);
+
+pinMode(LEDAMAS, OUTPUT);
+
+//pino do led 2 configurado como saída
+
+//pino do botão 2 configurado como entrada
+
+//pino do led 3 configurado como saida
+
+pinMode(BOT3, INPUT);
+
+//pino do botão 3 configurado como entrada
+
+void loop(){
+
+ESTBOT1 digitalRead(BOT1);
+
+//Lé o estado do botão 1
+
+ESTBOT2 digitalRead(BOT2);
+
+//Lé o estado do botão 2
+
+ESTBOT3-digitalRead(BOT3),
+
+//Lé o estado do botão 3
+
+if (ESTBOT1= HIGH)(
+
+//Se o botão 1 está pressionado
+
+digitalWrite(LEDLAR1, HIGH);
+
+//acende o led 1
+
+digitalWrite(LEDAZU2, LOW);
+
+//opaga o led 2
+
+digitalWrite(LEDAMA3, LOW);
+
+//apaga o led 3
+
+)it (ESTBOT2 HIGH)(
+
+digitalWrite(LEDLAR1, LOW);
+
+//apaga o led 1
+
+digitalWrite(LEDAZU2, HIGH);
+
+//acende o led 2
+
+digitalWrite(LEDAMA3, LOW);
+
+//apaga o led 3
+
+if (ESTBOT3 HIGH)
+
+digitalWrite(LEDLAR1, LOW);
+
+lapaga o led 1
+
+digitalWrite(LEDAZU2, LOW);
+
+//apaga o led 2
+
+digitalWrite(LEDAMAS, HIGH);
+
+//acende o led 3
+
+delay(100);
