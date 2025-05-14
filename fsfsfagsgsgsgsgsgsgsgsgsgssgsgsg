@@ -1,44 +1,66 @@
-// Pinos dos LEDs
-const int ledPins[] = {2, 3, 4, 5};  // LEDs nos pinos 2 a 5
-const int numLeds = 4;
+// C++ code
+//
 
-// Pinos dos botões
-const int buttonPins[] = {6, 7, 8, 9, 10}; // Botões nos pinos 6 a 10
-const int numButtons = 5;
+int LEDAZUL = 9;
+int LEDAMAR = 10;
+int LEDVERDE = 8;
+int LEDLAR = 11;
+int BOTAOAZUL = 6;
+int BOTAOAMAR = 5;
+int BOTAOVERDE = 7;
+int BOTAOLAR = 4;
+int BOTAORESET = 3;
+int ESTAAZUL = 0;
+int ESTAAMAR = 0;
+int ESTAVERDE = 0;
+int ESTALAR = 0;
+int RESET = 0;
 
-void setup() {
-  // Configura LEDs como saída
-  for (int i = 0; i < numLeds; i++) {
-    pinMode(ledPins[i], OUTPUT);
-    digitalWrite(ledPins[i], LOW);
-  }
-
-  // Configura botões como entrada com pull-up interno
-  for (int i = 0; i < numButtons; i++) {
-    pinMode(buttonPins[i], INPUT_PULLUP);
-  }
+void setup()
+{
+  pinMode(LEDAZUL, OUTPUT);
+  pinMode(BOTAOAZUL, INPUT);
+  pinMode(LEDAMAR, OUTPUT);
+  pinMode(BOTAOAMAR, INPUT);
+  pinMode(LEDVERDE, OUTPUT);
+  pinMode(BOTAOVERDE, INPUT);
+  pinMode(LEDLAR, OUTPUT);
+  pinMode(BOTAOLAR, INPUT);
+  pinMode(BOTAORESET, INPUT);
 }
 
-void loop() {
-  // Verifica botões
-  for (int i = 0; i < numButtons; i++) {
-    if (digitalRead(buttonPins[i]) == LOW) {  // Botão pressionado (ativo em LOW)
-      if (i == 4) {
-        // Último botão: apaga todos os LEDs
-        for (int j = 0; j < numLeds; j++) {
-          digitalWrite(ledPins[j], LOW);
-        }
-      } else {
-        // Acende LEDs de acordo com o botão pressionado
-        for (int j = 0; j < numLeds; j++) {
-          if (j <= i) {
-            digitalWrite(ledPins[j], HIGH);
-          } else {
-            digitalWrite(ledPins[j], LOW);
-          }
-        }
-      }
-      delay(300); // debounce simples
-    }
+void loop()
+{
+  ESTAAZUL = digitalRead(BOTAOAZUL);
+  ESTAAMAR = digitalRead(BOTAOAMAR);
+  ESTAVERDE = digitalRead(BOTAOVERDE);
+  ESTALAR = digitalRead(BOTAOLAR);
+  RESET = digitalRead(BOTAORESET);
+  
+  
+  if (ESTAAZUL == HIGH){
+    digitalWrite(LEDAZUL, HIGH);
+    digitalWrite(LEDVERDE, HIGH);
   }
+    if (ESTAAMAR == HIGH){
+    digitalWrite(LEDAZUL, HIGH);
+    digitalWrite(LEDAMAR, HIGH);
+    digitalWrite(LEDVERDE, HIGH);
+  }
+    if (ESTAVERDE == HIGH){
+    digitalWrite(LEDVERDE, HIGH);
+  }
+      if (ESTALAR == HIGH){
+    digitalWrite(LEDAZUL, HIGH);
+    digitalWrite(LEDAMAR, HIGH);
+    digitalWrite(LEDVERDE, HIGH);
+    digitalWrite(LEDLAR, HIGH);
+  }
+  if (RESET == HIGH){
+    digitalWrite(LEDAZUL, LOW);
+    digitalWrite(LEDAMAR, LOW);
+    digitalWrite(LEDVERDE, LOW);
+    digitalWrite(LEDLAR, LOW);
+  }
+  
 }
