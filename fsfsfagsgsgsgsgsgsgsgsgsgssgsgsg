@@ -1,0 +1,44 @@
+// Pinos dos LEDs
+const int ledPins[] = {2, 3, 4, 5};  // LEDs nos pinos 2 a 5
+const int numLeds = 4;
+
+// Pinos dos botões
+const int buttonPins[] = {6, 7, 8, 9, 10}; // Botões nos pinos 6 a 10
+const int numButtons = 5;
+
+void setup() {
+  // Configura LEDs como saída
+  for (int i = 0; i < numLeds; i++) {
+    pinMode(ledPins[i], OUTPUT);
+    digitalWrite(ledPins[i], LOW);
+  }
+
+  // Configura botões como entrada com pull-up interno
+  for (int i = 0; i < numButtons; i++) {
+    pinMode(buttonPins[i], INPUT_PULLUP);
+  }
+}
+
+void loop() {
+  // Verifica botões
+  for (int i = 0; i < numButtons; i++) {
+    if (digitalRead(buttonPins[i]) == LOW) {  // Botão pressionado (ativo em LOW)
+      if (i == 4) {
+        // Último botão: apaga todos os LEDs
+        for (int j = 0; j < numLeds; j++) {
+          digitalWrite(ledPins[j], LOW);
+        }
+      } else {
+        // Acende LEDs de acordo com o botão pressionado
+        for (int j = 0; j < numLeds; j++) {
+          if (j <= i) {
+            digitalWrite(ledPins[j], HIGH);
+          } else {
+            digitalWrite(ledPins[j], LOW);
+          }
+        }
+      }
+      delay(300); // debounce simples
+    }
+  }
+}
