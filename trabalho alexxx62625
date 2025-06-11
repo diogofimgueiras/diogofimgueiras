@@ -1,0 +1,128 @@
+Perfeito! Abaixo estão as duas partes separadas, cada uma com seu próprio main para facilitar testes independentes.
+
+✅ QUESTÃO 1 – Pesquisa de Opinião (Java)
+java
+Copiar código
+import java.util.Scanner;
+
+public class PesquisaOpiniao {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int idade;
+        int total = 0, somaIdades = 0, opiniaoA = 0;
+
+        System.out.println("===== PESQUISA DE OPINIÃO =====");
+
+        while (true) {
+            System.out.print("Digite a idade (idade negativa encerra): ");
+            idade = sc.nextInt();
+
+            if (idade < 0) {
+                break;
+            }
+
+            sc.nextLine(); // Limpar buffer
+            System.out.print("Digite a opinião (A-Ótimo, B-Bom, C-Regular, D-Ruim, E-Péssimo): ");
+            char op = sc.nextLine().toUpperCase().charAt(0);
+
+            if ("ABCDE".indexOf(op) != -1) {
+                total++;
+                somaIdades += idade;
+                if (op == 'A') {
+                    opiniaoA++;
+                }
+            } else {
+                System.out.println("Opinião inválida. Tente novamente.");
+            }
+        }
+
+        if (total > 0) {
+            double media = (double) somaIdades / total;
+            double percentualA = (double) opiniaoA / total * 100;
+
+            System.out.println("\n=== RESULTADOS ===");
+            System.out.println("Total de pessoas: " + total);
+            System.out.printf("Média de idades: %.2f\n", media);
+            System.out.printf("Porcentagem de respostas 'A': %.2f%%\n", percentualA);
+        } else {
+            System.out.println("Nenhum dado foi inserido.");
+        }
+
+        sc.close();
+    }
+}
+✅ QUESTÃO 2 – Cálculo de Salário (Java)
+java
+Copiar código
+import java.util.Scanner;
+
+public class CalculoSalario {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String resposta;
+
+        System.out.println("===== CÁLCULO DE SALÁRIO =====");
+
+        do {
+            System.out.print("Horas trabalhadas: ");
+            double ht = sc.nextDouble();
+
+            System.out.print("Valor por hora: ");
+            double vh = sc.nextDouble();
+
+            double salarioBruto = ht * vh;
+            double inss = salarioBruto * 0.11;
+            double baseIR = salarioBruto - inss;
+            double impostoRenda = 0;
+
+            if (baseIR > 1800) {
+                impostoRenda = baseIR * 0.275 - 360;
+            } else if (baseIR > 900) {
+                impostoRenda = baseIR * 0.15 - 135;
+            }
+
+            double salarioLiquido = salarioBruto - inss - impostoRenda;
+
+            System.out.printf("Salário líquido: R$ %.2f\n", salarioLiquido);
+
+            sc.nextLine(); // Limpar buffer
+            do {
+                System.out.print("Deseja calcular o salário de outro funcionário? (S/N): ");
+                resposta = sc.nextLine().toUpperCase();
+            } while (!resposta.equals("S") && !resposta.equals("N"));
+
+        } while (resposta.equals("S"));
+
+        sc.close();
+    }
+}
+🧪 Como testar:
+Crie dois arquivos:
+
+PesquisaOpiniao.java
+
+CalculoSalario.java
+
+Compile com:
+
+bash
+Copiar código
+javac PesquisaOpiniao.java
+javac CalculoSalario.java
+Execute com:
+
+bash
+Copiar código
+java PesquisaOpiniao
+java CalculoSalario
+Se quiser que eu organize isso em classes com atributos e métodos mais completos (POO clássica), posso refatorar também. Deseja?
+
+
+
+
+
+
+
