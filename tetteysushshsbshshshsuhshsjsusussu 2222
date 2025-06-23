@@ -1,0 +1,15 @@
+int LED1 = 13; // Bit menos significativo (LSB)
+int LED2 = 12; // Bit mais significativo (MSB)
+
+void setup() {
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+}
+
+void loop() {
+  for (int i = 0; i < 4; i++) {
+    digitalWrite(LED1, i & 0b01); // LSB
+    digitalWrite(LED2, i & 0b10); // MSB
+    delay(1000); // Esperar 1 segundo
+  }
+}
